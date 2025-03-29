@@ -78,21 +78,21 @@
 
 static void __cpuid(int CPUInfo[4], int infoType)
 {
-	uint32_t a = CPUInfo[0];
-	uint32_t b = CPUInfo[1];
-	uint32_t c = CPUInfo[2];
-	uint32_t d = CPUInfo[3];
+	uint32_t a = 0;
+	uint32_t b = 0;
+	uint32_t c = 0;
+	uint32_t d = 0;
 
-#if defined(__i386__) || defined(__x86_64__)
-	__asm__ __volatile__ ("xchgl	%%ebx,%0\n\t"
-						"cpuid	\n\t"
-						"xchgl	%%ebx,%0\n\t"
-						: "+r" (b), "=a" (a), "=c" (c), "=d" (d)
-						: "1" (infoType), "2" (c));
-#else
+//#if defined(__i386__) || defined(__x86_64__)
+//	__asm__ __volatile__ ("xchgl	%%ebx,%0\n\t"
+//						"cpuid	\n\t"
+//						"xchgl	%%ebx,%0\n\t"
+//						: "+r" (b), "=a" (a), "=c" (c), "=d" (d)
+//						: "1" (infoType), "2" (c));
+//#else
 	// not supported on other systems!
 	a = b = c = d = 0;
-#endif
+//#endif
 
   CPUInfo[0] = a;
   CPUInfo[1] = b;
