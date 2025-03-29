@@ -564,9 +564,9 @@ int Hierarchy::calculateCrossingsPlaneSweep()
 int Hierarchy::calculateCrossingsPlaneSweep(int i)
 {
 	const Level *pLevel[2];
-	pLevel[0] = m_pLevel[i]; pLevel[1] = m_pLevel[i+1];
-
-	if (pLevel[0]->high() <= 0 || pLevel[1] <= 0) return 0;
+        //error: ordered comparison of pointer with integer zero
+	//if (pLevel[0]->high() <= 0 || pLevel[1] <= 0) return 0;
+	if (pLevel[0]->high() <= 0 || pLevel[1] == NULL) return 0;
 
 	int j, k;
 	for(j = 0; j <= 1; ++j)
