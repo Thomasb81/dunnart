@@ -43,9 +43,11 @@ CONFIG(noassertions) {
 }
 
 QMAKE_CXXFLAGS_RELEASE -= -Os -O2
-QMAKE_CXXFLAGS_RELEASE += -O3
+QMAKE_CXXFLAGS_RELEASE += -O3 --std=c++11
 
-QMAKE_CXXFLAGS_DEBUG += -O0
+QMAKE_CXXFLAGS_DEBUG += -O0 --std=c++11 -fsanitize=address
+QMAKE_LFLAGS += -fsanitize=address
+LIBS += -ldl -lpthread
 
 contains(TEMPLATE, lib) {
   macx {
